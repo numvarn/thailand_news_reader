@@ -5,10 +5,10 @@
 อาจาย์พิศาล สุขขี
 
 สาขาวิทยาการคอมพิวเตอร์,
- 
+
 มหาวิทยาลัยราชภัฏศรีสะเกษ
 
-## [Watch it on YouTube](https://youtu.be/ExKYjqgswJg)
+## [Phisan Sookkhee](https://www.facebook.com/numvarn)
 
 **Packages we are using:**
 
