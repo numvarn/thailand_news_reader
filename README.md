@@ -1,4 +1,9 @@
-# Welcome page, Login Page and Sign up page - Flutter UI
+# โปรแกรมสำหรับอ่านข่าวภาษาไทยออนไลน์
+
+พัฒนาโดย 
+
+อาจาย์พิศาล สุขีย
+สาขาวิทยาการคอมพิวเตอร์ มหาวิทยาลัยราชภัฏศรีสะเกษ
 
 ## [Watch it on YouTube](https://youtu.be/ExKYjqgswJg)
 
