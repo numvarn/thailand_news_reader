@@ -31,5 +31,5 @@ phisan.s@sskru.ac.th
 
 ### UI
 
-![App UI](/UI.png)
+![App UI](/news-UI.png)
 # thailand_news_reader
