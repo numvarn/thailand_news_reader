@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/Login/login_screen.dart';
-import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
-import 'package:flutter_auth/Screens/Welcome/components/background.dart';
-import 'package:flutter_auth/components/rounded_button.dart';
-import 'package:flutter_auth/constants.dart';
+import 'package:comsci_news/Screens/Login/login_screen.dart';
+import 'package:comsci_news/Screens/Signup/signup_screen.dart';
+import 'package:comsci_news/Screens/Welcome/components/background.dart';
+import 'package:comsci_news/components/rounded_button.dart';
+import 'package:comsci_news/constants.dart';
 import 'package:flutter_svg/svg.dart';
 
 class Body extends StatelessWidget {
