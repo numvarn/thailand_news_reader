@@ -23,6 +23,10 @@ class _NewsPageState extends State<NewsPage> {
     fontSize: 18,
   );
 
+  Future<void> getNews(BuildContext context) async {
+    return _GetNewsAPI();
+  }
+
   Future<String> _GetNewsAPI() async {
     var response = await Http.get(
         'http://newsapi.org/v2/top-headlines?country=th&apiKey=eb1a72ebd0874af8bb85b76fb4583161');
@@ -52,56 +56,61 @@ class _NewsPageState extends State<NewsPage> {
           future: _GetNewsAPI(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
-              return ListView.builder(
-                itemCount: dataList.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    child: Column(
-                      children: <Widget>[
-                        Card(
-                          child: Image.network('${dataList[index].urlToImage}'),
-                          semanticContainer: true,
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                          margin: EdgeInsets.all(15),
-                        ),
-                        InkWell(
-                          child: Container(
-                            margin: EdgeInsets.all(15),
-                            child: Align(
-                                child: Text(
-                              '${dataList[index].title}',
-                              style: titleStyle,
-                            )),
-                          ),
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => NewsViewPage(
-                                          url: dataList[index].url,
-                                        )));
-                          },
-                        ),
-                        Container(
-                          margin:
-                              EdgeInsets.symmetric(horizontal: 15, vertical: 0),
-                          child: Align(
-                            child: Text(
-                              '${dataList[index].description}',
-                              style: TextStyle(color: Colors.grey[600]),
+              return new RefreshIndicator(
+                  child: ListView.builder(
+                    itemCount: dataList.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        child: Column(
+                          children: <Widget>[
+                            Card(
+                              child: Image.network(
+                                  '${dataList[index].urlToImage}'),
+                              semanticContainer: true,
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.0)),
+                              margin: EdgeInsets.all(15),
                             ),
-                          ),
+                            InkWell(
+                              child: Container(
+                                margin: EdgeInsets.all(15),
+                                child: Align(
+                                    child: Text(
+                                  '${dataList[index].title}',
+                                  style: titleStyle,
+                                )),
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => NewsViewPage(
+                                              url: dataList[index].url,
+                                            )));
+                              },
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 0),
+                              child: Align(
+                                child: Text(
+                                  '${dataList[index].description}',
+                                  style: TextStyle(color: Colors.grey[600]),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              );
+                      );
+                    },
+                  ),
+                  onRefresh: () {
+                    return getNews(context);
+                  });
             } else {
               return Container(
                 child: CircularProgressIndicator(),
