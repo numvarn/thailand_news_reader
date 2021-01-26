@@ -24,7 +24,9 @@ class _NewsPageState extends State<NewsPage> {
   );
 
   Future<void> getNews(BuildContext context) async {
-    return _GetNewsAPI();
+    setState(() {
+      dataList = [];
+    });
   }
 
   Future<String> _GetNewsAPI() async {
@@ -32,13 +34,14 @@ class _NewsPageState extends State<NewsPage> {
         'http://newsapi.org/v2/top-headlines?country=th&apiKey=eb1a72ebd0874af8bb85b76fb4583161');
 
     jsonData = json.decode(utf8.decode(response.bodyBytes));
+
     for (var data in jsonData['articles']) {
       ThailandNewsData news = ThailandNewsData(
           data['title'], data['description'], data['urlToImage'], data['url']);
       dataList.add(news);
     }
 
-    return 'ok';
+    return 'successed';
   }
 
   @override
