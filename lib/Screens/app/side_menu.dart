@@ -36,7 +36,7 @@ class _NavDrawerState extends State<NavDrawer> {
           ),
           ListTile(
             leading: Icon(Icons.account_box),
-            title: Text('ข้อมูลส่วนตัว'),
+            title: Text('ผู้พัฒนา'),
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => MyProfile()));
