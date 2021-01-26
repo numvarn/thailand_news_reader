@@ -23,7 +23,7 @@ class _NewsPageState extends State<NewsPage> {
     fontSize: 18,
   );
 
-  Future<void> getNews(BuildContext context) async {
+  Future<Null> getNews(BuildContext context) async {
     setState(() {
       dataList = [];
     });
