@@ -23,7 +23,7 @@ class _NewsPageState extends State<NewsPage> {
     fontSize: 18,
   );
 
-  Future<Null> getNews(BuildContext context) async {
+  Future<Null> updateData(BuildContext context) async {
     setState(() {
       dataList = [];
     });
@@ -55,12 +55,12 @@ class _NewsPageState extends State<NewsPage> {
       ),
       drawer: NavDrawer(),
       body: Background(
-        child: FutureBuilder(
-          future: _GetNewsAPI(),
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            if (snapshot.hasData) {
-              return new RefreshIndicator(
-                  child: ListView.builder(
+        child: new RefreshIndicator(
+            child: FutureBuilder(
+              future: _GetNewsAPI(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
                     itemCount: dataList.length,
                     itemBuilder: (context, index) {
                       return Container(
@@ -110,17 +110,17 @@ class _NewsPageState extends State<NewsPage> {
                         ),
                       );
                     },
-                  ),
-                  onRefresh: () {
-                    return getNews(context);
-                  });
-            } else {
-              return Container(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
-        ),
+                  );
+                } else {
+                  return Container(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
+            ),
+            onRefresh: () {
+              return updateData(context);
+            }),
       ),
     );
   }
